@@ -1,9 +1,5 @@
-struct Token {
-    char* type;
-    char* literal;
-};
 
-enum token_type {
+enum token_type { 
     ILLEGAL, EOF_TOK,  
     IDENT, INT_TOK,   
     ASSIGN, PLUS,
@@ -13,3 +9,7 @@ enum token_type {
 };
 
 
+struct Token {
+    enum token_type type;
+    char* literal;
+};
