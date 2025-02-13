@@ -1,11 +1,11 @@
 TEST_DIR:=test
 BUILD_DIR:=build
-DIR=token lexer test
+DIR=lexer test
 
 SRC:= $(notdir $(wildcard $(foreach dir, $(DIR), $(dir)/*.c)))
 OBJ:=$(patsubst %.c, $(BUILD_DIR)/%.o, $(SRC))
 
-CFLAGS=-Wall -Werror
+CFLAGS=-Wall -Werror -O3
 LDFLAGS=-L/usr/local/lib -lcheck
 
 compiler: $(OBJ) | $(BUILD_DIR)
