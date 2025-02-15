@@ -1,4 +1,10 @@
 #define MAX_SIZE_WORD 10
+#ifndef SUCCESS
+#define SUCCESS 1
+#endif
+#ifndef ERROR 
+#define ERROR 0
+#endif
 
 struct Lexer {
   const char* input; 
@@ -10,9 +16,7 @@ struct Lexer {
 
 struct Lexer newLexer(const char* input);
 
-char readCurrentChar(const struct Lexer* l);
-
-void readNextChar(struct Lexer* l);
+char readNextChar(struct Lexer* l);
 
 char lookAHead(const struct Lexer* l, int steps);
 
@@ -20,12 +24,5 @@ void moveCursorLexer(struct Lexer* l);
 
 void moveCursorUntilChar(struct Lexer* l);
 
-void readCurrentWord(struct Lexer* l, char* result_word);
-
 void readNextWord(struct Lexer* l, char* result_word);
 
-int isChar(const char* result_word);
-
-int isNumber(const char* result_word);
-
-int isSpecialChar(char ch);

@@ -1,68 +1,51 @@
+#include <string.h>
 #include "token.h"
-#include "../lexer/lexer.h"
+#include "../utils/utils.h"
+
 
 struct Token newToken(enum token_type type, char* literal) {
   struct Token t = {type, literal};
   return t;
 }
 
-struct Token getCurrentToken(struct Lexer* l) {
-  char* current_word;
+struct Token getTokenFromLitteral(char* w) {
+  if (isNumber(w)) 
+    return newToken(INT_TOK, w);
 
-  readNextWord(l, current_word); 
-  struct Token tok;
-  if (isChar(current_word)) {
-    int i = 0;
-  }
-  else {
-
-    switch (l->ch) {
-      case '=':
-        tok = newToken(ASSIGN, &l->ch);     
-        break;
-      case ';':
-        tok = newToken(SEMICOLON, &l->ch);     
-      case '(':
-        tok = newToken(LPAREN, &l->ch);     
-        break;
-      case ')':
-        tok = newToken(RPAREN, &l->ch);     
-        break;
-      case ',':
-        tok = newToken(COMMA, &l->ch);     
-        break;
-      case '+':
-        tok = newToken(PLUS, &l->ch);     
-        break;
-      case '{':
-        tok = newToken(LBRACE, &l->ch);     
-        break;
-      case '}':
-        tok = newToken(RBRACE, &l->ch);     
-        break;
-      case 0:
-        tok = newToken(EOF_TOK, &l->ch);     
-        break;
+  if (strlen(w) == 1) {
+      switch (w[0]) {
+        case '=':
+          return newToken(ASSIGN, w);     
+        case ';':
+          return newToken(SEMICOLON, w);     
+        case '(':
+          return newToken(LPAREN, w);     
+        case ')':
+          return newToken(RPAREN, w);     
+        case ',':
+          return newToken(COMMA, w);     
+        case '+':
+          return newToken(PLUS, w);     
+        case '{':
+          return newToken(LBRACE, w);     
+        case '}':
+          return newToken(RBRACE, w);     
+        case 0:
+          return newToken(EOF_TOK, w);     
+        default:
+          return newToken(ILLEGAL, w);
     }
   }
-  return tok;
+  else {
+    if (strcmp(w, "let") == 0)
+      return newToken(LET, w);
+
+    else if (strcmp(w, "function") == 0)
+      return newToken(FUNCTION, w);
+
+    else 
+      return newToken(IDENT, w);
+  }
 }
 
-
-struct Token NextToken(struct Lexer* l) { 
-  moveCursorLexer(l);
-  return getCurrentToken(l);
-}
-
-
-char* token_type_to_string[] = {
-    "ILLEGAL", "EOF",
-    "IDENT", "INT",
-    "ASSIGN", "PLUS",
-    "COMMA",
-    "SEMICOLON",
-    "LPAREN", "RPAREN", "LBRACE", "RBRACE",
-    "FUNCTION",
-    "LET"
-};
 

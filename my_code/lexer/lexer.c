@@ -1,9 +1,8 @@
-#include <stdlib.h>
-#include <stdio.h>
 #include <string.h>
 #include <assert.h>
 
 #include "lexer.h"
+#include "../utils/utils.h"
 
 
 //ne supporte que les caractères ASCII
@@ -16,45 +15,16 @@ char readCurrentChar(const struct Lexer* l) {
   }
 }
 
-int isChar(const char* result_word) {
-  return (strlen(result_word) > 1); 
-}
-
-int isSpecialChar(char ch) {
-    switch (ch) {
-      case ' ':
-      case '=':
-      case ';':
-      case '(':
-      case ')':
-      case ',':
-      case '+':
-      case '{':
-      case '}':
-      case 0:
-        return EXIT_SUCCESS;
-      default:
-        return EXIT_FAILURE;
-    }
-}
-
-int isNumber(const char* result_word) {
-  for (int i = 0; i < strlen(result_word); i++) {
-    if (!('0' <= result_word[i] && result_word[i] <= '9'))
-      return EXIT_FAILURE;
-  }
-  return EXIT_SUCCESS;
-}
 
 void readCurrentWord(struct Lexer* l, char* result_word) {
   int word_length = 0;
-
-  if (isSpecialChar(l->ch) == EXIT_SUCCESS) {
+  
+  if (isSpecialChar(l->ch)) {
     result_word[0] = l->ch;
     word_length++;
   }
 
-  while (isSpecialChar(l->ch) == EXIT_FAILURE) {
+  while (!isSpecialChar(l->ch) && l->ch != ' ') {
     result_word[word_length] = l->ch;
     readNextChar(l);
     word_length++;
@@ -63,8 +33,8 @@ void readCurrentWord(struct Lexer* l, char* result_word) {
 }
 
 void moveCursorUntilChar(struct Lexer* l) {
-  while ( readCurrentChar(l) == ' ') {
-    moveCursorLexer(l);
+  while ((l->position <= l->input_length) && (!isChar(l->ch) && (l->ch != ' '))) {
+    readNextChar(l);
   }
 }
 
@@ -84,9 +54,10 @@ char lookAHead(const struct Lexer* l, int steps) {
   return l->input[l->readPosition + steps];
   }
 
-void readNextChar(struct Lexer* l) {
+char readNextChar(struct Lexer* l) {
   moveCursorLexer(l);
   l->ch = readCurrentChar(l);
+  return l->ch;
 }
 
 struct Lexer newLexer(const char* input) {
