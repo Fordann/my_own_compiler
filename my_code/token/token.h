@@ -2,18 +2,37 @@
 enum token_type { 
     ILLEGAL,
     EOF_TOK,  
+
     IDENT, 
     INT_TOK,   
+
     ASSIGN, 
+    EQ,
+    NOT_EQ,
+    LT,
+    GT,
+    BANG,
+    MULT,
+    DIV,
+    MINUS,
     PLUS,
+
     COMMA, 
     SEMICOLON,
+
     LPAREN, 
     RPAREN, 
     LBRACE, 
     RBRACE,
+
     FUNCTION, 
-    LET
+    RETURN,
+    LET,
+
+    IF,
+    ELSE,
+    TRUE,
+    FALSE,
 };
 
 

@@ -13,3 +13,5 @@ int isNumber(const char*);
 int isSpecialChar(char);
 
 int isChar(char);
+
+int isDigit(char);

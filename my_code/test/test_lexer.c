@@ -19,11 +19,55 @@ START_TEST (testReadNextWord)
 
   l = newLexer("(test");
   readNextWord(&l, result_word);
-  ck_assert_str_eq(result_word, "(\0");
+  ck_assert_str_eq(result_word, "(");
 
-  l = newLexer("test1(test2");
+  l = newLexer("test=");
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "test");
+
+  l = newLexer("test==");
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "test");
+
+  l = newLexer("==i");
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "==");
+
+  l = newLexer("test1!");
   readNextWord(&l, result_word);
   ck_assert_str_eq(result_word, "test1");
+
+  l = newLexer("=i");
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "=");
+
+  l = newLexer("!=");
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "!=");
+
+  l = newLexer("!?");
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "!");
+
+  l = newLexer("test1 test2");
+  readNextWord(&l, result_word);
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "test2");
+
+  l = newLexer("==i");
+  readNextWord(&l, result_word);
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "i");
+
+  l = newLexer("test==");
+  readNextWord(&l, result_word);
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "==");
+
+  l = newLexer("(test");
+  readNextWord(&l, result_word);
+  readNextWord(&l, result_word);
+  ck_assert_str_eq(result_word, "test");
 }
 END_TEST
 

@@ -9,7 +9,7 @@ int isLetter(char letter) {
 }
 
 int isChar(char ch) {
-  return isLetter(ch) || isSpecialChar(ch);
+  return isDigit(ch) || isLetter(ch) || isSpecialChar(ch);
 }
 int isSpecialChar(char ch) {
     switch (ch) {
@@ -19,8 +19,14 @@ int isSpecialChar(char ch) {
       case ')':
       case ',':
       case '+':
+      case '-':
+      case '/':
+      case '*':
       case '{':
       case '}':
+      case '<':
+      case '>':
+      case '!':
       case 0:
         return SUCCESS;
       default:
@@ -28,9 +34,14 @@ int isSpecialChar(char ch) {
     }
 }
 
+int isDigit(char ch) {
+    return ('0' <= ch && ch <= '9');
+}
+
+
 int isNumber(const char* result_word) {
   for (int i = 0; i < strlen(result_word); i++) {
-    if (result_word[i] < '0' || result_word[i] > '9')
+    if (!isDigit(result_word[i]))
       return ERROR;
   }
   return SUCCESS;

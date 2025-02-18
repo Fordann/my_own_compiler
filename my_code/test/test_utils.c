@@ -17,7 +17,7 @@ START_TEST (testIsChar)
   ck_assert_int_eq(isChar('A'), SUCCESS);
   ck_assert_int_eq(isChar('a'), SUCCESS);
   ck_assert_int_eq(isChar(')'), SUCCESS);
-  ck_assert_int_eq(isChar('1'), ERROR);
+  ck_assert_int_eq(isChar('1'), SUCCESS);
   ck_assert_int_eq(isChar('}'), SUCCESS);
   ck_assert_int_eq(isChar(','), SUCCESS);
   ck_assert_int_eq(isChar('+'), SUCCESS);

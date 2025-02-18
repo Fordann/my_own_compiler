@@ -9,12 +9,25 @@ START_TEST (testGetTokenFromLitteral)
   
   ck_assert_int_eq(getTokenFromLitteral("let").type == LET, SUCCESS);
   ck_assert_int_eq(getTokenFromLitteral("function").type == FUNCTION, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("if").type == IF, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("else").type == ELSE, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("true").type == TRUE, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("false").type == FALSE, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("return").type == RETURN, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("<").type == LT, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral(">").type == GT, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("==").type == EQ, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("!=").type == NOT_EQ, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("!").type == BANG, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral("(").type == LPAREN, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral(")").type == RPAREN, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral("{").type == LBRACE, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral("}").type == RBRACE, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral(";").type == SEMICOLON, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral("+").type == PLUS, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("*").type == MULT, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("/").type == DIV, SUCCESS);  
+  ck_assert_int_eq(getTokenFromLitteral("-").type == MINUS, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral(",").type == COMMA, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral("3").type == INT_TOK, SUCCESS);  
   ck_assert_int_eq(getTokenFromLitteral("10").type == INT_TOK, SUCCESS);  

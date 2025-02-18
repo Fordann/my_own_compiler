@@ -1,6 +1,6 @@
 TEST_DIR:=test
 BUILD_DIR:=build
-DIR=lexer token utils test
+DIR=lexer token utils tree test
 
 SRC:= $(notdir $(wildcard $(foreach dir, $(DIR), $(dir)/*.c)))
 OBJ:=$(patsubst %.c, $(BUILD_DIR)/%.o, $(SRC))

@@ -16,13 +16,16 @@ struct Lexer {
 
 struct Lexer newLexer(const char* input);
 
-char readNextChar(struct Lexer* l);
+void loadNextChar(struct Lexer* l);
 
 char lookAHead(const struct Lexer* l, int steps);
 
 void moveCursorLexer(struct Lexer* l);
 
-void moveCursorUntilChar(struct Lexer* l);
+int moveCursorUntilChar(struct Lexer* l);
 
-void readNextWord(struct Lexer* l, char* result_word);
+int readNextWord(struct Lexer* l, char* result_word);
 
+int readCurrentWord(struct Lexer* l, char* result_word);
+
+void print_input_lexer(struct Lexer* l);

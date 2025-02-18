@@ -16,6 +16,10 @@ struct Token getTokenFromLitteral(char* w) {
       switch (w[0]) {
         case '=':
           return newToken(ASSIGN, w);     
+        case '<':
+          return newToken(LT, w);     
+        case '>':
+          return newToken(GT, w);     
         case ';':
           return newToken(SEMICOLON, w);     
         case '(':
@@ -24,8 +28,16 @@ struct Token getTokenFromLitteral(char* w) {
           return newToken(RPAREN, w);     
         case ',':
           return newToken(COMMA, w);     
+        case '!':
+          return newToken(BANG, w);     
         case '+':
           return newToken(PLUS, w);     
+        case '-':
+          return newToken(MINUS, w);     
+        case '/':
+          return newToken(DIV, w);     
+        case '*':
+          return newToken(MULT, w);     
         case '{':
           return newToken(LBRACE, w);     
         case '}':
@@ -43,6 +55,26 @@ struct Token getTokenFromLitteral(char* w) {
     else if (strcmp(w, "function") == 0)
       return newToken(FUNCTION, w);
 
+    else if (strcmp(w, "if") == 0)
+      return newToken(IF, w);
+
+    else if (strcmp(w, "==") == 0)
+      return newToken(EQ, w);
+
+    else if (strcmp(w, "!=") == 0)
+      return newToken(NOT_EQ, w);
+
+    else if (strcmp(w, "else") == 0)
+      return newToken(ELSE, w);
+
+    else if (strcmp(w, "return") == 0)
+      return newToken(RETURN, w);
+
+    else if (strcmp(w, "true") == 0)
+      return newToken(TRUE, w);
+      
+    else if (strcmp(w, "false") == 0)
+      return newToken(FALSE, w);
     else 
       return newToken(IDENT, w);
   }
