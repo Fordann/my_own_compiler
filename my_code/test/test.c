@@ -90,6 +90,10 @@ int main() {
   for (int i = 0; i < NB_SYMB; i++) {
     addBranchInTree(t, tab[i]);
   }
+  printf("valid : %d\n", isValidNextChar(t, "fun", 'c'));
+  printf("valid : %d\n", isValidNextChar(t, "f", 'a'));
+  printf("valid : %d\n", isValidNextChar(t, "=", '='));
+  printf("valid : %d\n", isValidNextChar(t, "let", 'p'));
   displayTree(t, 0);
   SRunner* test_tab[NB_FILE_TO_TEST] = {
     srunner_create(test_lexer()),

@@ -17,3 +17,5 @@ void addBranchInTree(struct Tree* root_tree, char* word_to_add);
 void displayTree(struct Tree* t, int depth);
 
 struct Tree* initEmptyTree();
+
+int isValidNextChar(struct Tree* t, char* already_read_word, char char_to_add);

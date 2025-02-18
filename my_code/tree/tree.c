@@ -65,6 +65,30 @@ void addBranchInTree(struct Tree* root_tree, char* word_to_add) {
   }
 }
 
+struct Tree* searchNodeTree(struct Tree* t, char* word) {
+  struct Tree* current_tree = t;
+  for (int letter = 0; letter < strlen(word); letter++) {
+    int child_who_has_value = findValueInChildsTree(current_tree, word[letter]);
+    if (child_who_has_value != -1) {
+        current_tree = current_tree->childs[child_who_has_value];
+        printf("%c\n", word[letter]);
+    }
+    else {
+      return NULL;
+    }
+  }
+  return current_tree;
+}
+
+int isValidNextChar(struct Tree* t, char* already_read_word, char char_to_add) {
+  size_t word_size = strlen(already_read_word);
+  char* new_word = malloc((word_size + 2 ) * sizeof(char));
+  strcpy(new_word, already_read_word);
+  new_word[word_size] = char_to_add;
+  new_word[word_size + 1] = 0;
+  return searchNodeTree(t, new_word) != NULL;
+}
+
 void displayTree(struct Tree* t, int depth) {
     if (t == NULL) return;
     
