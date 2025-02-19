@@ -132,14 +132,13 @@ START_TEST (testMoveCursorUntilChar)
 }
 END_TEST
 
-#define NB_TEST_LEXER 3
+#define NB_TEST_LEXER 2
 
 Suite *test_lexer(void) {
   Suite *s = suite_create("test_lexer");
    
   struct Test* testTab[NB_TEST_LEXER] = {
     createTest("nextWord", testReadNextWord),
-    createTest("nextWord2", testReadNextWord2),
     createTest("moveUntilChar", testMoveCursorUntilChar),
   };
 

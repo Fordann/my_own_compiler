@@ -7,7 +7,7 @@
 int main() {
   
   struct Tree* t = createTreeParser();
-  displayTree(t, 0);
+  //displayTree(t, 0);
   struct Lexer l = newLexer("letfive=5;"
     "letten=10;"
     "fori inrange(1,20):"
@@ -30,7 +30,7 @@ int main() {
   word[0] = 0;
   while (l.position < strlen(l.input)) {
     readNextWord(&l, t, word);
-    printf("%s\t", word);
+    printf("%s\t", getTokenFromLitteral(word).literal);
     word[0] = 0;
   }
   printf("\n");

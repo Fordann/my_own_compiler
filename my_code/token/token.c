@@ -15,73 +15,82 @@ struct Token createStringWildcardToken() {
 
 struct Token getTokenFromLitteral(char* w) {
   if (isNumber(w)) 
-    return newToken(INT_TOK, w);
+    return newToken(INT_TOK, "INT_TOK");
 
   if (strlen(w) == 1) {
       switch (w[0]) {
         case '=':
-          return newToken(ASSIGN, w);     
+          return newToken(ASSIGN, "ASSIGN");     
         case '<':
-          return newToken(LT, w);     
+          return newToken(LT, "LT");     
         case '>':
-          return newToken(GT, w);     
+          return newToken(GT, "GT");     
         case ';':
-          return newToken(SEMICOLON, w);     
+          return newToken(SEMICOLON, "SEMICOLON");     
         case '(':
-          return newToken(LPAREN, w);     
+          return newToken(LPAREN, "LPAREN");     
         case ')':
-          return newToken(RPAREN, w);     
+          return newToken(RPAREN,"RPAREN");     
         case ',':
-          return newToken(COMMA, w);     
+          return newToken(COMMA,"COMMA");     
         case '!':
-          return newToken(BANG, w);     
+          return newToken(BANG,"BANG");     
         case '+':
-          return newToken(PLUS, w);     
+          return newToken(PLUS,"PLUS");     
         case '-':
-          return newToken(MINUS, w);     
+          return newToken(MINUS,"MINUS");     
         case '/':
-          return newToken(DIV, w);     
+          return newToken(DIV,"DIV");     
         case '*':
-          return newToken(MULT, w);     
+          return newToken(MULT,"MULT");     
         case '{':
-          return newToken(LBRACE, w);     
+          return newToken(LBRACE,"LBRACE");     
         case '}':
-          return newToken(RBRACE, w);     
+          return newToken(RBRACE,"RBRACE");     
         case 0:
-          return newToken(EOF_TOK, w);     
+          return newToken(EOF_TOK,"EOF_TOK");     
         default:
-          return newToken(ILLEGAL, w);
+          return newToken(ILLEGAL,"ILLEGAL");
     }
   }
   else {
     if (strcmp(w, "let") == 0)
-      return newToken(LET, w);
+      return newToken(LET, "LET");
 
     else if (strcmp(w, "function") == 0)
-      return newToken(FUNCTION, w);
+      return newToken(FUNCTION, "FUNCTION");
 
     else if (strcmp(w, "if") == 0)
-      return newToken(IF, w);
+      return newToken(IF, "IF");
 
     else if (strcmp(w, "==") == 0)
-      return newToken(EQ, w);
+      return newToken(EQ, "EQ");
 
     else if (strcmp(w, "!=") == 0)
-      return newToken(NOT_EQ, w);
+      return newToken(NOT_EQ, "NOT_EQ");
 
     else if (strcmp(w, "else") == 0)
-      return newToken(ELSE, w);
+      return newToken(ELSE, "ELSE");
 
     else if (strcmp(w, "return") == 0)
-      return newToken(RETURN, w);
+      return newToken(RETURN, "RETURN");
 
     else if (strcmp(w, "true") == 0)
-      return newToken(TRUE, w);
+      return newToken(TRUE, "TRUE");
       
     else if (strcmp(w, "false") == 0)
-      return newToken(FALSE, w);
+      return newToken(FALSE, "FALSE");
+
+    else if (strcmp(w, "for") == 0)
+      return newToken(FALSE, "FOR");
+
+    else if (strcmp(w, "in") == 0)
+      return newToken(FALSE, "IN");
+
+    else if (strcmp(w, "range") == 0)
+      return newToken(FALSE, "RANGE");
     else 
-      return newToken(IDENT, w);
+      return newToken(IDENT, "IDENT");
   }
 }
 
