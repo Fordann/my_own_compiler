@@ -1,3 +1,5 @@
+#ifndef TOKEN_H
+#define TOKEN_H
 
 enum token_type { 
     ILLEGAL,
@@ -41,4 +43,10 @@ struct Token {
     char* literal;
 };
 
+struct Token newToken(enum token_type type, char* literal);
+
 struct Token getTokenFromLitteral(char*);
+
+struct Token createStringWildcardToken();
+
+#endif

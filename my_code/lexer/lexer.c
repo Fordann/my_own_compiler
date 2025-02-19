@@ -16,6 +16,19 @@ char readCurrentChar(struct Lexer* l) {
   return l->ch;
 }
 
+int readNextWordV2(struct Lexer* l, struct Tree* t, char* result_word) {
+  int letter = 0;  
+  while ((l->position < strlen(l->input)) && isValidNextChar(t, result_word, l->ch)) {
+    result_word[letter] = l->ch;
+    letter++;
+    result_word[letter] = 0;
+    loadNextChar(l);
+  }
+  return strcmp(result_word, "") == 0;
+}
+
+
+
 int readCurrentWord(struct Lexer* l, char* result_word) {
   int w_length = 0;
   if (l->ch == '!' || l->ch == '=') {

@@ -8,6 +8,11 @@ struct Token newToken(enum token_type type, char* literal) {
   return t;
 }
 
+struct Token createStringWildcardToken() {
+  struct Token t = {IDENT, "*"};
+  return t;
+}
+
 struct Token getTokenFromLitteral(char* w) {
   if (isNumber(w)) 
     return newToken(INT_TOK, w);

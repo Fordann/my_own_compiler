@@ -1,3 +1,7 @@
+#ifndef LEXER_H
+#define LEXER_H
+#include "../tree/tree.h"
+
 #define MAX_SIZE_WORD 10
 #ifndef SUCCESS
 #define SUCCESS 1
@@ -29,3 +33,7 @@ int readNextWord(struct Lexer* l, char* result_word);
 int readCurrentWord(struct Lexer* l, char* result_word);
 
 void print_input_lexer(struct Lexer* l);
+
+int readNextWordV2(struct Lexer* l, struct Tree* t, char* result_word);
+
+#endif

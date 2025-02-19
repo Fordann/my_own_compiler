@@ -11,6 +11,7 @@ int isLetter(char letter) {
 int isChar(char ch) {
   return isDigit(ch) || isLetter(ch) || isSpecialChar(ch);
 }
+
 int isSpecialChar(char ch) {
     switch (ch) {
       case '=':

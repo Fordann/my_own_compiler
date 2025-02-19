@@ -1,3 +1,5 @@
+#ifndef UTILS_H
+#define UTILS_H
 
 #ifndef SUCCESS
 #define SUCCESS 1
@@ -15,3 +17,5 @@ int isSpecialChar(char);
 int isChar(char);
 
 int isDigit(char);
+
+#endif

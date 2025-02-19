@@ -25,13 +25,6 @@ void freeTests(struct Test** tab_test, int size) {
 #define NB_FILE_TO_TEST 3
 
 int main() {
-  //char result_word[100];
-  //struct Lexer l = newLexer("(test");
-  //print_input_lexer(&l);
-  //readNextWord(&l, result_word);
-  //print_input_lexer(&l);
-  //readNextWord(&l, result_word);
-  //printf("resultat : %s vs %s\n", result_word, "test");
 // char w[100];
   
 //  l = newLexer("==i");
