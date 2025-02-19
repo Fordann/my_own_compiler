@@ -25,13 +25,6 @@ void freeTests(struct Test** tab_test, int size) {
 #define NB_FILE_TO_TEST 3
 
 int main() {
-// char w[100];
-  
-//  l = newLexer("==i");
-
- // l = newLexer("test==");
-
-  //l = newLexer("(test");
   //struct Lexer l = newLexer("let five = 5;"
     //"let ten = 10;\n"
     //"let add = fn(x, y) {\n"
@@ -49,45 +42,6 @@ int main() {
     //"10 != 9;             \n"
    // );
 
-//  while (readCurrentWord(&l, w)) {
- //   printf("word : %s, token : %s len:%d\n", w, getTokenFromLitteral(w).literal, (int)strlen(w));
-  struct Tree* t = initEmptyTree();
-  #define NB_SYMB 23
-  char* tab[NB_SYMB] = {
-        "=",
-        "<",
-        ">",
-        ";",
-        "(",
-        ")",
-        ",",
-        "!",
-        "+",
-        "-",
-        "/",
-        "*",
-        "{",
-        "}",
-        "function",
-        "let",
-        "return",
-        "true",
-        "false",
-        "if",
-        "else",
-        "!=",
-        "=="
-  };
-  addBranchInTree(t, "=");
-  displayTree(t, 0);
-  for (int i = 0; i < NB_SYMB; i++) {
-    addBranchInTree(t, tab[i]);
-  }
-  printf("valid : %d\n", isValidNextChar(t, "fun", 'c'));
-  printf("valid : %d\n", isValidNextChar(t, "f", 'a'));
-  printf("valid : %d\n", isValidNextChar(t, "=", '='));
-  printf("valid : %d\n", isValidNextChar(t, "let", 'p'));
-  displayTree(t, 0);
   SRunner* test_tab[NB_FILE_TO_TEST] = {
     srunner_create(test_lexer()),
     srunner_create(test_utils()),

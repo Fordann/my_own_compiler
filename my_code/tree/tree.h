@@ -10,6 +10,7 @@
 #define ERROR 0
 #endif
 
+
 struct Tree {
   char value;
   enum token_type token;
@@ -25,9 +26,14 @@ struct Tree* initEmptyTreeForSearch();
 void displayTree(struct Tree* t, int depth);
 
 struct Tree* initEmptyTree();
+struct Tree* initTreeWithValue(struct Token token, char value);
 
 int isValidNextChar(struct Tree* t, char* already_read_word, char char_to_add);
 
 struct Tree* addChildTree(struct Tree* t, struct Tree* child);
+
+void increaseSizeTree(struct Tree* t);
+
+struct Tree* createTreeParser();
 
 #endif

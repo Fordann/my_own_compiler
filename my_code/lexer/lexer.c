@@ -16,7 +16,10 @@ char readCurrentChar(struct Lexer* l) {
   return l->ch;
 }
 
-int readNextWordV2(struct Lexer* l, struct Tree* t, char* result_word) {
+int readNextWord(struct Lexer* l, struct Tree* t, char* result_word) {
+  if (moveCursorUntilChar(l) == ERROR)
+    return ERROR;
+
   int letter = 0;  
   while ((l->position < strlen(l->input)) && isValidNextChar(t, result_word, l->ch)) {
     result_word[letter] = l->ch;
@@ -28,36 +31,6 @@ int readNextWordV2(struct Lexer* l, struct Tree* t, char* result_word) {
 }
 
 
-
-int readCurrentWord(struct Lexer* l, char* result_word) {
-  int w_length = 0;
-  if (l->ch == '!' || l->ch == '=') {
-    result_word[0] = l->ch;
-    loadNextChar(l);
-    w_length++;
-
-    if (l->ch == '=') {
-      result_word[w_length] = l->ch;
-      loadNextChar(l);
-      w_length++;
-    }
-  }
-  else if (isSpecialChar(l->ch)) {
-    result_word[0] = l->ch;
-    loadNextChar(l);
-    w_length++;
-  }
-  else {
-    while (!isSpecialChar(l->ch) && l->ch != ' ') {
-        result_word[w_length] = l->ch;
-        loadNextChar(l);
-        w_length++;
-      }
-  }
-  result_word[w_length] = 0;
-  return w_length == 0 ? ERROR : SUCCESS;
-}
-
 int moveCursorUntilChar(struct Lexer* l) {
   while ((l->position <= l->input_length) && (!isChar(readCurrentChar(l)))) {
     if (l->position > l->input_length)
@@ -65,14 +38,6 @@ int moveCursorUntilChar(struct Lexer* l) {
     moveCursorLexer(l);
   }
   readCurrentChar(l);
-  return SUCCESS;
-}
-
-int readNextWord(struct Lexer* l, char* result_word) {
-  if (moveCursorUntilChar(l) == ERROR)
-    return ERROR;
-
-  readCurrentWord(l, result_word);
   return SUCCESS;
 }
 

@@ -8,6 +8,7 @@
 struct Tree* initEmptyTree() {
   struct Tree* t = malloc(sizeof(struct Tree));
   t->childs = NULL;
+  t->max_size = 0;
   t->nb_childs = 0;
   t->value = 0;
   return t;
@@ -80,7 +81,7 @@ struct Tree* searchNodeTree(struct Tree* t, char* word) {
   for (int letter = 0; letter < strlen(word); letter++) {
     int child_who_has_value = findValueInChildsTree(current_tree, word[letter]);
     
-    if (child_who_has_value == -1 && isLetter(word[letter]))
+    if (child_who_has_value == -1 && (isLetter(word[letter]) || isDigit(word[letter])))
       child_who_has_value = findValueInChildsTree(current_tree, '%');
 
     if (child_who_has_value != -1) {
@@ -105,6 +106,47 @@ int isValidNextChar(struct Tree* t, char* already_read_word, char char_to_add) {
   new_word[word_size + 1] = 0;
 
   return searchNodeTree(t, new_word) != NULL;
+}
+
+struct Tree* createTreeParser() {
+  struct Tree* t = initEmptyTree();
+  addChildTree(t, initEmptyTreeForSearch());
+
+  #define NB_SYMB 26
+
+  struct Token tab[NB_SYMB] = {
+        newToken(EQ, "="),
+        newToken(LT, "<"),
+        newToken(GT, ">"),
+        newToken(COMMA, ";"),
+        newToken(FUNCTION, "("),
+        newToken(FUNCTION, ")"),
+        newToken(FUNCTION, ","),
+        newToken(FUNCTION, "!"),
+        newToken(FUNCTION, "+"),
+        newToken(FUNCTION, "-"),
+        newToken(FUNCTION, "/"),
+        newToken(FUNCTION, "*"),
+        newToken(FUNCTION, "{"),
+        newToken(FUNCTION, "}"),
+        newToken(FUNCTION, "function"),
+        newToken(FUNCTION, "let"),
+        newToken(FUNCTION, "return"),
+        newToken(FUNCTION, "true"),
+        newToken(FUNCTION, "false"),
+        newToken(FUNCTION, "if"),
+        newToken(FUNCTION, "else"),
+        newToken(FUNCTION, "!="),
+        newToken(FUNCTION, "=="),
+        newToken(FUNCTION, "for"),
+        newToken(FUNCTION, "in"),
+        newToken(FUNCTION, "range"),
+      
+  };
+  for (int i = 0; i < NB_SYMB; i++) {
+    addBranchInTree(t, tab[i]);
+  }
+  return t;
 }
 
 void displayTree(struct Tree* t, int depth) {

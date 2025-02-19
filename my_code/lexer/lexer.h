@@ -28,7 +28,7 @@ void moveCursorLexer(struct Lexer* l);
 
 int moveCursorUntilChar(struct Lexer* l);
 
-int readNextWord(struct Lexer* l, char* result_word);
+int readNextWord(struct Lexer* l, struct Tree* t, char* result_word);
 
 int readCurrentWord(struct Lexer* l, char* result_word);
 
