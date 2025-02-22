@@ -53,7 +53,7 @@ END_TEST
 Suite *test_utils(void) {
   Suite *s = suite_create("test_utils");
    
-  struct Test* testTab[NB_TEST_UTILS] = {
+  struct Test testTab[NB_TEST_UTILS] = {
     createTest("Number", testIsNumber),
     createTest("SpecialChar", testIsSpecialChar),
     createTest("isChar", testIsChar)
@@ -61,10 +61,9 @@ Suite *test_utils(void) {
   };
 
   for (int i = 0; i < NB_TEST_UTILS; i++) {
-    struct Test* t = testTab[i];
-    tcase_add_test(t->test_id, t->test_func);
-    suite_add_tcase(s, t->test_id);
+    struct Test t = testTab[i];
+    tcase_add_test(t.test_id, t.test_func);
+  suite_add_tcase(s, t.test_id);
   }
-  //freeTests(testTab, NB_TEST_UTILS);
   return s;
 }

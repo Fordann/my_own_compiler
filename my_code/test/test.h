@@ -13,7 +13,7 @@ struct Test {
   
 };
 
-struct Test* createTest(char* test_name, const TTest*);
+struct Test createTest(char* test_name, const TTest*);
 
 void freeTests(struct Test** tab_test, int size);
 

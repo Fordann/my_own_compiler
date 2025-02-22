@@ -14,6 +14,22 @@ struct Tree* initEmptyTree() {
   return t;
 }
 
+void freeTree(struct Tree* t) {
+  for (int i = 0; i< t->nb_childs; i++) {
+    if (t->childs[i] != t) {
+      freeTree(t->childs[i]);
+    }
+  }
+  if (t->childs != NULL) {
+    free(t->childs);
+    t->childs = NULL;
+  }
+  if (t != NULL) {
+    free(t);
+    t = NULL;
+  }
+}
+
 struct Tree* initTreeWithValue(struct Token token, char value) {
   struct Tree* t = initEmptyTree();
   t->value = value;
@@ -43,7 +59,7 @@ void increaseSizeTree(struct Tree* t) {
       t->childs = realloc(t->childs, t->max_size * sizeof(struct Tree));
     }
   } 
-  }
+}
 
 int findValueInChildsTree(struct Tree* t, char value) {
   for (int current_child = 0; current_child < t->nb_childs; current_child++) {
@@ -104,8 +120,10 @@ int isValidNextChar(struct Tree* t, char* already_read_word, char char_to_add) {
   strcpy(new_word, already_read_word);
   new_word[word_size] = char_to_add;
   new_word[word_size + 1] = 0;
+  struct Tree* where_node_can_be_inserted = searchNodeTree(t, new_word);
+  free(new_word);
 
-  return searchNodeTree(t, new_word) != NULL;
+  return where_node_can_be_inserted != NULL;
 }
 
 struct Tree* createTreeParser() {
@@ -158,7 +176,7 @@ void displayTree(struct Tree* t, int depth) {
     printf("%c\n", t->value);
     
     for (int i = 0; i < t->nb_childs; i++) {
-        if (t->childs[i]->value != '%' || t->value !='%')
+        if (t->childs[i] != t)
           displayTree(t->childs[i], depth + 1);
     }
 }

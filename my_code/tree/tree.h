@@ -36,4 +36,6 @@ void increaseSizeTree(struct Tree* t);
 
 struct Tree* createTreeParser();
 
+void freeTree(struct Tree*);
+
 #endif

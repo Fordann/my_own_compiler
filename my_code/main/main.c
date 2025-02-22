@@ -7,7 +7,14 @@
 int main() {
   
   struct Tree* t = createTreeParser();
-  //displayTree(t, 0);
+  //struct Tree* t = initEmptyTreeForSearch();
+  increaseSizeTree(t);
+  //printf("%d\n", t->nb_childs);
+  struct Tree* tt = initEmptyTreeForSearch();
+  addChildTree(t, tt);
+  struct Token tok = newToken(EQ, "ceererareaezre");
+  addBranchInTree(t, tok);
+  displayTree(t, 0);
   struct Lexer l = newLexer("letfive=5;"
     "letten=10;"
     "fori inrange(1,20):"
@@ -34,5 +41,6 @@ int main() {
     word[0] = 0;
   }
   printf("\n");
+ freeTree(t);
   return 0;
 }

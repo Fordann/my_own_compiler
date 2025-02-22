@@ -116,6 +116,8 @@ START_TEST (testReadNextWord)
   readNextWord(&l, t, result_word);
   ck_assert_str_eq(result_word, "test");
   result_word[0] = 0;
+
+  freeTree(t);
 }
 
 START_TEST (testMoveCursorUntilChar) 
@@ -137,17 +139,16 @@ END_TEST
 Suite *test_lexer(void) {
   Suite *s = suite_create("test_lexer");
    
-  struct Test* testTab[NB_TEST_LEXER] = {
+  struct Test testTab[NB_TEST_LEXER] = {
     createTest("nextWord", testReadNextWord),
     createTest("moveUntilChar", testMoveCursorUntilChar),
   };
 
   for (int i = 0; i < NB_TEST_LEXER; i++) {
-    struct Test* t = testTab[i];
-    tcase_add_test(t->test_id, t->test_func);
-    suite_add_tcase(s, t->test_id);
+    struct Test t = testTab[i];
+    tcase_add_test(t.test_id, t.test_func);
+    suite_add_tcase(s, t.test_id);
   }
-  //freeTests(testTab, NB_TEST_LEXER);
 
   return s;
 }

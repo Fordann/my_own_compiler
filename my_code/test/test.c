@@ -4,14 +4,11 @@
 #include "test_lexer.h"
 #include "test_token.h"
 #include "test_utils.h"
-#include "../token/token.h"
-#include "../lexer/lexer.h"
-#include "../tree/tree.h"
 
-struct Test* createTest(char* test_name, const TTest* test_func) {
-  struct Test* t = malloc(sizeof(struct Test));
-  t->test_id = tcase_create(test_name);
-  t->test_func = test_func;
+struct Test createTest(char* test_name, const TTest* test_func) {
+  struct Test t;
+  t.test_id = tcase_create(test_name);
+  t.test_func = test_func;
   return t;
 }
 
@@ -25,22 +22,6 @@ void freeTests(struct Test** tab_test, int size) {
 #define NB_FILE_TO_TEST 3
 
 int main() {
-  //struct Lexer l = newLexer("let five = 5;"
-    //"let ten = 10;\n"
-    //"let add = fn(x, y) {\n"
-    //"x + y;               \n"
-    //"};                   \n"
-    //"let result = add(five, ten);\n"
-    //"!-/*5;               \n"
-    //"5 < 10 > 5;          \n"
-    //"if (5 < 10) {        \n"
-    //"return true;         \n"
-    //"} else {             \n"
-    //"return false;        \n"
-    //"}                    \n"
-    //"10 == 10;            \n"
-    //"10 != 9;             \n"
-   // );
 
   SRunner* test_tab[NB_FILE_TO_TEST] = {
     srunner_create(test_lexer()),

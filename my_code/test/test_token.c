@@ -41,17 +41,16 @@ END_TEST
 Suite *test_token(void) {
   Suite *s = suite_create("test_token");
    
-  struct Test* testTab[NB_TEST_TOKEN] = {
+  struct Test testTab[NB_TEST_TOKEN] = {
     createTest("getGetTokenFromLitteral", testGetTokenFromLitteral)
 
   };
 
   for (int i = 0; i < NB_TEST_TOKEN; i++) {
-    struct Test* t = testTab[i];
-    tcase_add_test(t->test_id, t->test_func);
-    suite_add_tcase(s, t->test_id);
+    struct Test t = testTab[i];
+    tcase_add_test(t.test_id, t.test_func);
+    suite_add_tcase(s, t.test_id);
   }
 
-  //freeTests(testTab, NB_TEST_TOKEN);
   return s;
 }

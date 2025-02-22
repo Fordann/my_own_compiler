@@ -11,7 +11,7 @@ OBJ_SRC:=$(patsubst %.c, $(BUILD_DIR)/%.o, $(SRC))
 OBJ_TEST:=$(patsubst %.c, $(BUILD_DIR)/%.o, $(TEST_SRC))
 OBJ_MAIN:=$(patsubst %.c, $(BUILD_DIR)/%.o, $(MAIN_SRC))
 
-CFLAGS=-Wall -Werror -O3
+CFLAGS= -Werror -O3 -g
 LDFLAGS=-L/usr/local/lib -lcheck
 
 run: $(OBJ_MAIN) $(OBJ_SRC) | $(BUILD_DIR)
